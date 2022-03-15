@@ -1,29 +1,19 @@
 {
-  "name": "translime-plugin-my-plugin",
+  "name": "translime-plugin-mahjong-2-emoji",
   "version": "1.0.0",
-  "description": "a plugin template",
+  "description": "将麻将字符串转成方便复制的 emoji",
   "license": "MIT",
   "keywords": [
     "translime",
     "translime-plugin"
   ],
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    }
-  },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "dev": "vite build -c vite.config.js --watch",
-    "build:plugin": "vite build",
-    "build:ui": "vite build -c ui.vite.config.js",
-    "build": "yarn build:plugin && yarn build:ui"
+    "dev": "vite build --watch",
+    "build": "vite build"
   },
   "devDependencies": {
     "eslint": "7.32.0",
@@ -36,8 +26,9 @@
     "vue-template-compiler": "^2.6.14"
   },
   "plugin": {
-    "title": "translime plugin template",
-    "description": "插件模板",
+    "title": "mahjong to emoji",
+    "description": "将麻将字符串转成方便复制的 emoji",
+    "icon": "src/icon.webp",
     "ui": "dist/ui.umd.js"
   }
 }

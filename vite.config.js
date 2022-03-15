@@ -1,16 +1,20 @@
 import { builtinModules } from 'module';
+import { createVuePlugin } from 'vite-plugin-vue2';
+import pkg from './package.json';
 
 /**
  * @type {import('vite').UserConfig}
  * @see https://vitejs.dev/config/
  */
 const config = {
+  plugins: [
+    createVuePlugin(),
+  ],
   envDir: process.cwd(),
   build: {
     sourcemap: false,
     target: 'node14',
     outDir: './dist',
-    assetsDir: '.',
     terserOptions: {
       ecma: 2021,
       compress: {
@@ -19,17 +23,23 @@ const config = {
       safari10: false,
     },
     lib: {
-      entry: 'src/index.js',
-      name: 'plugin',
-      fileName: (format) => `index.${format}.js`,
+      entry: 'src/ui.vue',
+      name: pkg.name, // 需要指定一个唯一 id
+      fileName: (format) => `ui.${format}.js`,
     },
-    emptyOutDir: true,
+    cssCodeSplit: true,
     rollupOptions: {
       external: [
-        'http-server',
+        'vue',
         ...builtinModules,
       ],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
+      },
     },
+    emptyOutDir: true,
   },
 };
 
