@@ -60,7 +60,7 @@ export default {
     },
     parseBlock(block) {
       const isBlockReg = /^(?:(?:\d+[mps])|(?:[1-7]+[z])|x)+$/is;
-      const matchBlockReg = /(?:\d+[mps])|(?:[1-7]+[z])|x/ig;
+      const matchBlockReg = /(?:\d+[mps])|(?:[1-7]+[z])|x/gi;
       const isBlock = isBlockReg.test(block);
       if (!isBlock) {
         return [];
@@ -73,7 +73,9 @@ export default {
         return ['x'];
       }
       const subBlockArray = subBlock.split('');
-      return subBlockArray.slice(0, -1).map((n) => `${n}${subBlockArray.at(-1).toLowerCase()}`);
+      return subBlockArray
+        .slice(0, -1)
+        .map((n) => `${n}${subBlockArray.at(-1).toLowerCase()}`);
     },
     copy() {
       window.electron.clipboard.writeText(this.parsedPai);

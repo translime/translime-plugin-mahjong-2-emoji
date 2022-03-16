@@ -1,6 +1,6 @@
 {
   "name": "translime-plugin-mahjong-2-emoji",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "将麻将字符串转成方便复制的 emoji",
   "license": "MIT",
   "keywords": [
