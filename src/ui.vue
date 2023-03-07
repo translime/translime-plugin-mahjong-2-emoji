@@ -27,7 +27,7 @@ import mahjongEmoji from './emoji.json';
 const vuetify = window.vuetify$.components;
 
 export default {
-  name: 'ui',
+  name: 'PluginUi',
 
   components: {
     ...vuetify,

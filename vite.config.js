@@ -1,5 +1,5 @@
-import { builtinModules } from 'module';
-import { createVuePlugin } from 'vite-plugin-vue2';
+import vue from '@vitejs/plugin-vue';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import pkg from './package.json';
 
 /**
@@ -8,36 +8,25 @@ import pkg from './package.json';
  */
 const config = {
   plugins: [
-    createVuePlugin(),
+    vue(),
+    cssInjectedByJsPlugin(),
   ],
   envDir: process.cwd(),
   build: {
-    sourcemap: false,
-    target: 'node14',
+    sourcemap: 'inline',
+    target: 'node16',
     outDir: './dist',
-    terserOptions: {
-      ecma: 2021,
-      compress: {
-        passes: 2,
-      },
-      safari10: false,
-    },
     lib: {
       entry: 'src/ui.vue',
       name: pkg.name, // 需要指定一个唯一 id
+      formats: ['esm'],
       fileName: (format) => `ui.${format}.js`,
     },
     cssCodeSplit: true,
     rollupOptions: {
       external: [
         'vue',
-        ...builtinModules,
       ],
-      output: {
-        globals: {
-          vue: 'Vue',
-        },
-      },
     },
     emptyOutDir: true,
   },
